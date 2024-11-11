@@ -23,7 +23,7 @@ export const BookStoreThemeProvider = ({children}:
     {children: ReactNode}) => {
         // 토글 기능
         const [themeName, setThemeName] = useState<ThemeName>('light');
-        
+    
         // 지역 상태
         const toggleTheme = () => {
             setThemeName(themeName === 'light' ? 'dark' : 'light');
