@@ -5,6 +5,7 @@ import { getImgSrc } from '../../utils/image';
 import { formatNumber } from '../../utils/format';
 import { FaHeart } from 'react-icons/fa'
 import { ViewMode } from './BooksViewSwitcher';
+import { Link } from 'react-router-dom';
 
 interface Props {
   book: Book;
@@ -14,6 +15,7 @@ interface Props {
 function BooksItem({book, view} : Props) {
   return (
     <BooksItemStyle view={view}>
+      <Link to={`/book/${book.id}`}>
       <div className='img'>
         <img src={getImgSrc(book.id)} alt={book.title} />
       </div>
@@ -27,15 +29,19 @@ function BooksItem({book, view} : Props) {
           <span>{book.likes}</span>
         </div>
       </div>
+      </Link>
     </BooksItemStyle>
   )
 }
 
 const BooksItemStyle = styled.div<Pick<Props, "view">>`
-  display: flex;
-  flex-direction: ${({ view }) => view === 'grid' ? 'column' : 'row'};
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-
+  a {
+    display: flex;
+    flex-direction: ${({ view }) => view === 'grid' ? 'column' : 'row'};
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+  }
+    
   .img {
     border-radius: ${({ theme }) => theme.borderRadius.default};
     overflow: hidden;
