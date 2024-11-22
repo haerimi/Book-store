@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { getToken, removeToken } from '../store/authStore';
+import { platform } from 'os';
 
-const BASE_URL = "http://localhost:9999";
+const BASE_URL = "http://localhost:1126";
 const DEFAULT_TIMEOUT = 30000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
@@ -35,3 +36,26 @@ export const createClient = (config?: AxiosRequestConfig) => {
 };
 
 export const httpClient = createClient();
+
+// 공통 요청 부분
+type RequestMethod = "get" | "post" | "put" | "delete";
+export const requestHandler = async <T>(method: RequestMethod, 
+  url: string, payload?: T) => {
+    let response;
+
+    switch (method) {
+      case "post":
+        response = await httpClient.post(url, payload);
+        break;
+      case "get":
+        response = await httpClient.get(url);
+        break;
+      case "put":
+        response = await httpClient.put(url, payload);
+        break;
+      case "delete":
+        response = await httpClient.delete(url);
+        break;
+    }
+    return response.data;
+}

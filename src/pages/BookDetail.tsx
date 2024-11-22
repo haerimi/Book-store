@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import EllipsisBox from '../components/common/EllipsisBox';
 import LikeButton from '../components/book/LikeButton';
 import AddToCart from '../components/book/AddToCart';
+import BookReview from '@/components/book/BookReview';
 
 const bookInfoList = [
     {
@@ -49,7 +50,7 @@ const bookInfoList = [
 
 function BookDetail() {
     const { bookId } = useParams();
-    const { book, likeToggle } = useBook(bookId);
+    const { book, likeToggle, reviews, addReview } = useBook(bookId);
 
     if(!book) return null;
 
@@ -63,7 +64,6 @@ function BookDetail() {
             <Title size='large' color='text'>
                 {book.title}
             </Title>
-        </div>            
             { bookInfoList.map((item) => (
                 <dl>
                     <dt>{item.label}</dt>
@@ -77,6 +77,7 @@ function BookDetail() {
             <LikeButton book={book} onClick={likeToggle} />
         </div>
         <div className='add-cart'><AddToCart book={book}/></div>
+        </div>        
       </header>
       <div className='content'>
         <Title size='medium'>상세 설명</Title>
@@ -84,6 +85,9 @@ function BookDetail() {
 
         <Title size='medium'>목차</Title>
         <p className='index'>{book.contents}</p>
+
+        <Title size='medium'>리뷰</Title>
+        <BookReview reviews={reviews} onAdd={addReview} />
       </div>
     </BookDetailStyle>
   )
@@ -93,7 +97,7 @@ const BookDetailStyle = styled.div`
     .header {
         display: flex;
         align-items: start;
-        gqp: 24px;
+        gap: 24px;
         padding: 0 0 24px 0;
 
         .img {
@@ -108,7 +112,7 @@ const BookDetailStyle = styled.div`
             flex: 1;
             display: flex;
             flex-direction: column;
-            gqp: 12px;
+            gap: 12px;
 
             dl {
                 display: flex;
@@ -122,10 +126,6 @@ const BookDetailStyle = styled.div`
                 }
             }
         }
-    }
-
-    .content {
-
     }
 `;
 

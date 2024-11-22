@@ -24,12 +24,15 @@ function BooksFilter() {
 
   const handleNews = () => {
     const newSearchParams = new URLSearchParams(searchParams);
-
+  
+    // 신간 버튼을 클릭할 때 새 URL 쿼리 파라미터 설정
     if (newSearchParams.get(QUERYSTRING.NEWS)) {
       newSearchParams.delete(QUERYSTRING.NEWS);
     } else {
       newSearchParams.set(QUERYSTRING.NEWS, 'true');
     }
+  
+    // newSearchParams 설정 완료 후에 setSearchParams 호출
     setSearchParams(newSearchParams);
   }
 
@@ -37,13 +40,15 @@ function BooksFilter() {
     <BookFilterStyle>
       <div className='category'>
       { category.map((item) => (
-        <Button size='medium' $scheme={item.isActive ? "primary" : 'normal'} key={item.id} onClick={() => handleCategory(item.id)}>
-          {item.name};
+        <Button size='medium' scheme={item.isActive ? "primary" : 'normal'} key={item.id} 
+        onClick={() => handleCategory(item.id)}>
+          {item.name}
         </Button>
       ))}
       </div>
       <div className='new'>
-        <Button size='medium' $scheme={searchParams.get('news') ? "primary" : 'normal'} onClick={() => handleNews()}>
+        <Button size='medium' scheme={searchParams.get('news') ? "primary" : 'normal'} 
+        onClick={() => handleNews()}>
           신간
         </Button>
       </div>

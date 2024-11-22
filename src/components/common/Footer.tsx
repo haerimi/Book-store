@@ -1,20 +1,17 @@
-import React from 'react'
-import logo from '../../assets/images/logo.png'
-import styled from 'styled-components'
+import styled from "styled-components";
+import logo from "../../assets/images/logo.png";
 
 function Footer() {
   return (
     <FooterStyle>
-      <h1 className='logo'>
-        <img src={logo} alt='book store' />
+      <h1 className="logo">
+        <img src={logo} alt="book store" />
       </h1>
-      <div className='copyright'>
-        <p>
-          copyrigth(c), 2024, book store
-        </p>
+      <div className="copyright">
+        <p>copyright(c), 2024, Book Store.</p>
       </div>
     </FooterStyle>
-  )
+  );
 }
 
 const FooterStyle = styled.footer`
@@ -32,12 +29,17 @@ const FooterStyle = styled.footer`
     }
   }
 
-  .cooyright {
+  .copyright {
     p {
       font-size: 0.75rem;
       color: ${({ theme }) => theme.color.text};
     }
   }
+
+  @media screen AND ${({ theme }) => theme.mediaQuery.mobile} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-export default Footer
+export default Footer;

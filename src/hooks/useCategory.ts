@@ -12,19 +12,23 @@ export const useCategory = () => {
     const categoryId = params.get("category_id");
 
     if (categoryId) {
-      setCategory((prev) =>
-        prev.map((item) => ({
-          ...item,
-          isActive: item.id === Number(categoryId),
-        }))
-      );
+      setCategory((prev) => {
+        return prev.map((item) => {
+          return {
+            ...item,
+            isActive: item.id === Number(categoryId),
+          };
+        });
+      });
     } else {
-      setCategory((prev) =>
-        prev.map((item) => ({
-          ...item,
-          isActive: false,
-        }))
-      );
+      setCategory((prev) => {        
+        return prev.map((item) => {
+          return {
+            ...item,
+            isActive: false
+          };
+        });
+      });
     }
   };
 
@@ -40,18 +44,6 @@ export const useCategory = () => {
             name: '전체',
           },
           ...categoryData, // 서버에서 받아온 카테고리 데이터 추가
-          {
-            id: 0,
-            name: '동화',
-          },
-          {
-            id: 1,
-            name: '소설',
-          },
-          {
-            id: 2,
-            name: '사회',
-          },
         ];
 
         setCategory(categoryWithAll);
@@ -66,7 +58,7 @@ export const useCategory = () => {
     if (category.length > 0) {
       setActive();
     }
-  }, [location.search, category]); // location.search 또는 category가 변경되면 호출
+  }, [location.search]); // location.search 또는 category가 변경되면 호출
 
   return { category };
 };

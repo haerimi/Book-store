@@ -9,29 +9,31 @@ import { QUERYSTRING } from '../../constants/querystring';
 interface Props {
   pagination: IPagination;
 }
-function Pagination({pagination} : Props) {
-  const [ searchParams, setSearchParams] = useSearchParams();
+
+function Pagination({pagination}: Props) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { totalCount, currentPage } = pagination;
   const pages: number = Math.ceil(totalCount / LIMIT);
 
   const handleClickPage = (page: number) => {
     const newSearchParams = new URLSearchParams(searchParams);
-
     newSearchParams.set(QUERYSTRING.PAGE, page.toString());
-
     setSearchParams(newSearchParams);
+    console.log(`Page ${page} clicked`); // 페이지 클릭 로그 추가
   }
 
   return (
     <PaginationStyle>
       {pages > 0 && (
         <ol>
-          {Array(pages).fill(0).map((_, index) => (
-            <li>
-              <Button key={index} size='small' 
-              $scheme={index + 1 === currentPage ? 'primary' : 'normal'} 
-              onClick={() => handleClickPage(index+1)}>
-                {index +1}
+          {Array.from({ length: pages }, (_, index) => (
+            <li key={index + 1}>
+              <Button
+                size="small"
+                scheme={index + 1 === currentPage ? 'primary' : 'normal'}
+                onClick={() => handleClickPage(index + 1)}
+              >
+                {index + 1}
               </Button>
             </li>
           ))}
@@ -50,10 +52,10 @@ const PaginationStyle = styled.div`
   ol {
     list-style: none;
     display: flex;
-    gqp: 8px
+    gap: 8px;
     padding: 0;
     margin: 0;
   }
 `;
 
-export default Pagination
+export default Pagination;

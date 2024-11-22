@@ -18,7 +18,7 @@ export const fetchBooks = async (params: FectchBooksParams) => {
     try  {
         const response = await httpClient.get<FectchBooksResponse>("/books", {
             params: params,
-        })
+        });
     
         return response.data;
     } catch (error) {
@@ -26,7 +26,7 @@ export const fetchBooks = async (params: FectchBooksParams) => {
             books: [],
             pagination: {
                 totalCount: 0,
-                currentPage: 0
+                currentPage: 1
             }
         }
     }
@@ -46,3 +46,8 @@ export const unlikeBook = async (bookId: number) => {
     const response = await httpClient.delete(`/likes/${bookId}`)
     return response.data;
 }
+
+export const fetchBestBooks = async () => {
+  const response = await httpClient.get<Book[]>(`/books/best`);
+  return response.data;
+};
