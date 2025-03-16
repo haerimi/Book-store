@@ -1,4 +1,4 @@
-## Book Shop
+## Book Store
 ![image](https://github.com/user-attachments/assets/30070394-a68b-44e0-9d19-574c04493563)
 
 ## Back-End 저장소
