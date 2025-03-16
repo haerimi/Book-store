@@ -1,6 +1,11 @@
 ## Book Shop
 ![image](https://github.com/user-attachments/assets/30070394-a68b-44e0-9d19-574c04493563)
 
+## Back-End 저장소
+|저장소|
+|---|
+|[링크](https://github.com/haerimi/Book-Shop.git)|
+
 ## 서비스 소개
 ### 🚀 개요
 프로그래머스 풀스택 과정 수강 중, Node.js와 React를 활용한 웹 개발 진행
@@ -31,7 +36,7 @@
 ![image](https://github.com/user-attachments/assets/79e2d8d5-4ab9-4dfb-bb4f-312e633b0278)
 
 ## 기술 스택
-### Front-End
+### Front-End 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
